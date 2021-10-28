@@ -6,7 +6,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    
+    name: String!
   }
 `;
 
