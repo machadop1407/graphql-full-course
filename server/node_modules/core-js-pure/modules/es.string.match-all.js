@@ -5,16 +5,17 @@ var createIteratorConstructor = require('../internals/create-iterator-constructo
 var requireObjectCoercible = require('../internals/require-object-coercible');
 var toLength = require('../internals/to-length');
 var toString = require('../internals/to-string');
-var aFunction = require('../internals/a-function');
 var anObject = require('../internals/an-object');
 var classof = require('../internals/classof-raw');
 var isRegExp = require('../internals/is-regexp');
 var getRegExpFlags = require('../internals/regexp-flags');
-var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var getMethod = require('../internals/get-method');
+var redefine = require('../internals/redefine');
 var fails = require('../internals/fails');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 var speciesConstructor = require('../internals/species-constructor');
 var advanceStringIndex = require('../internals/advance-string-index');
+var regExpExec = require('../internals/regexp-exec-abstract');
 var InternalStateModule = require('../internals/internal-state');
 var IS_PURE = require('../internals/is-pure');
 
@@ -24,22 +25,11 @@ var REGEXP_STRING_ITERATOR = REGEXP_STRING + ' Iterator';
 var setInternalState = InternalStateModule.set;
 var getInternalState = InternalStateModule.getterFor(REGEXP_STRING_ITERATOR);
 var RegExpPrototype = RegExp.prototype;
-var regExpBuiltinExec = RegExpPrototype.exec;
 var nativeMatchAll = ''.matchAll;
 
 var WORKS_WITH_NON_GLOBAL_REGEX = !!nativeMatchAll && !fails(function () {
   'a'.matchAll(/./);
 });
-
-var regExpExec = function (R, S) {
-  var exec = R.exec;
-  var result;
-  if (typeof exec == 'function') {
-    result = exec.call(R, S);
-    if (typeof result != 'object') throw TypeError('Incorrect exec result');
-    return result;
-  } return regExpBuiltinExec.call(R, S);
-};
 
 // eslint-disable-next-line max-len -- ignore
 var $RegExpStringIterator = createIteratorConstructor(function RegExpStringIterator(regexp, string, global, fullUnicode) {
@@ -98,9 +88,9 @@ $({ target: 'String', proto: true, forced: WORKS_WITH_NON_GLOBAL_REGEX }, {
         if (!~flags.indexOf('g')) throw TypeError('`.matchAll` does not allow non-global regexes');
       }
       if (WORKS_WITH_NON_GLOBAL_REGEX) return nativeMatchAll.apply(O, arguments);
-      matcher = regexp[MATCH_ALL];
+      matcher = getMethod(regexp, MATCH_ALL);
       if (matcher === undefined && IS_PURE && classof(regexp) == 'RegExp') matcher = $matchAll;
-      if (matcher != null) return aFunction(matcher).call(regexp, O);
+      if (matcher) return matcher.call(regexp, O);
     } else if (WORKS_WITH_NON_GLOBAL_REGEX) return nativeMatchAll.apply(O, arguments);
     S = toString(O);
     rx = new RegExp(regexp, 'g');
@@ -108,4 +98,4 @@ $({ target: 'String', proto: true, forced: WORKS_WITH_NON_GLOBAL_REGEX }, {
   }
 });
 
-IS_PURE || MATCH_ALL in RegExpPrototype || createNonEnumerableProperty(RegExpPrototype, MATCH_ALL, $matchAll);
+IS_PURE || MATCH_ALL in RegExpPrototype || redefine(RegExpPrototype, MATCH_ALL, $matchAll);

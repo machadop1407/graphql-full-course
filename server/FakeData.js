@@ -86,6 +86,12 @@ const MovieList = [
     yearOfPublication: 2035,
     isInTheaters: false,
   },
+  {
+    id: 5,
+    name: "The Matrix",
+    yearOfPublication: 1999,
+    isInTheaters: true,
+  },
 ];
 
 module.exports = { UserList, MovieList };

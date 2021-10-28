@@ -1,5 +1,6 @@
 var isObject = require('../internals/is-object');
 var isSymbol = require('../internals/is-symbol');
+var getMethod = require('../internals/get-method');
 var ordinaryToPrimitive = require('../internals/ordinary-to-primitive');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 
@@ -9,9 +10,9 @@ var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
 // https://tc39.es/ecma262/#sec-toprimitive
 module.exports = function (input, pref) {
   if (!isObject(input) || isSymbol(input)) return input;
-  var exoticToPrim = input[TO_PRIMITIVE];
+  var exoticToPrim = getMethod(input, TO_PRIMITIVE);
   var result;
-  if (exoticToPrim !== undefined) {
+  if (exoticToPrim) {
     if (pref === undefined) pref = 'default';
     result = exoticToPrim.call(input, pref);
     if (!isObject(result) || isSymbol(result)) return result;

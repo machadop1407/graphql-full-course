@@ -1,8 +1,10 @@
 'use strict';
 var $ = require('../internals/export');
 var requireObjectCoercible = require('../internals/require-object-coercible');
+var isCallable = require('../internals/is-callable');
 var isRegExp = require('../internals/is-regexp');
 var toString = require('../internals/to-string');
+var getMethod = require('../internals/get-method');
 var getRegExpFlags = require('../internals/regexp-flags');
 var getSubstitution = require('../internals/get-substitution');
 var wellKnownSymbol = require('../internals/well-known-symbol');
@@ -36,8 +38,8 @@ $({ target: 'String', proto: true }, {
         ));
         if (!~flags.indexOf('g')) throw TypeError('`.replaceAll` does not allow non-global regexes');
       }
-      replacer = searchValue[REPLACE];
-      if (replacer !== undefined) {
+      replacer = getMethod(searchValue, REPLACE);
+      if (replacer) {
         return replacer.call(searchValue, O, replaceValue);
       } else if (IS_PURE && IS_REG_EXP) {
         return toString(O).replace(searchValue, replaceValue);
@@ -45,7 +47,7 @@ $({ target: 'String', proto: true }, {
     }
     string = toString(O);
     searchString = toString(searchValue);
-    functionalReplace = typeof replaceValue === 'function';
+    functionalReplace = isCallable(replaceValue);
     if (!functionalReplace) replaceValue = toString(replaceValue);
     searchLength = searchString.length;
     advanceBy = max(1, searchLength);

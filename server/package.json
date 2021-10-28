@@ -10,8 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.1.0",
+    "@graphql-tools/load": "^7.3.0",
+    "@graphql-tools/load-files": "^6.4.0",
+    "@graphql-tools/merge": "^8.1.2",
     "apollo-server": "^3.1.2",
     "graphql": "^15.5.1",
+    "graphql-tools": "^8.2.0",
     "nodemon": "^2.0.12"
   }
 }
