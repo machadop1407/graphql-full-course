@@ -1,5 +1,7 @@
 const resolvers = {
-  Query: {},
+  Query: {
+    name: () => {},
+  },
 };
 
 module.exports = { resolvers };
