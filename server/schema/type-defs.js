@@ -25,15 +25,15 @@ const typeDefs = gql`
     movie(name: String!): Movie!
   }
 
-
   input UpdateUsernameInput {
     id: ID!
     newUsername: String!
   }
-  # Write the update email input
+  # Add the 'newEmail' field to the input.
   input UpdateEmailInput {
-    
+    id: ID!
   }
+
   type Mutation {
     updateUsername(input: UpdateUsernameInput!): User
     # Add a mutation field called 'updateEmail'. It should return a User.
