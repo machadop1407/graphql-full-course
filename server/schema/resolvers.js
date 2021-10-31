@@ -1,6 +1,8 @@
+const { UserList } = require("../FakeData");
+
 const resolvers = {
   Query: {
-    name: () => {},
+    // Write the users resolver here using the `UserList` variable above.
   },
 };
 
