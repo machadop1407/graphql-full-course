@@ -5,10 +5,6 @@ const typeDefs = gql`
     id: ID!
     name: String!
     username: String!
-    age: Int!
-    nationality: Nationality!
-    friends: [User]
-    favoriteMovies: [Movie]
   }
 
   type Movie {
@@ -28,8 +24,6 @@ const typeDefs = gql`
   input CreateUserInput {
     name: String!
     username: String!
-    age: Int!
-    nationality: Nationality = BRAZIL
   }
 
   input UpdateUsernameInput {
