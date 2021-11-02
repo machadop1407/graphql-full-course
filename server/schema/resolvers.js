@@ -23,15 +23,6 @@ const resolvers = {
       return movie;
     },
   },
-  User: {
-    favoriteMovies: () => {
-      return _.filter(
-        MovieList,
-        (movie) =>
-          movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010
-      );
-    },
-  },
 
   Mutation: {
     createUser: (parent, args) => {
