@@ -1,11 +1,21 @@
 import "./App.css";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import React from "react";
+import fetch from "cross-fetch";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from "@apollo/client";
 import DisplayData from "./DisplayData";
 
 function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: "http://localhost:4000/graphql",
+    link: new HttpLink({
+      uri: `https://${window.location.host}:1338/graphql`,
+      fetch,
+    }),
   });
 
   return (

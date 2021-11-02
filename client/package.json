@@ -1,20 +1,21 @@
 {
-	"scripts": {
-		"start": "snowpack dev"
-	},
-	"dependencies": {
-		"@apollo/client": "^3.4.16",
-		"graphql": "^15.6.1",
-		"react": "^18.0.0-alpha-64931821a-20210808",
-		"react-dom": "^18.0.0-alpha-64931821a-20210808"
-	},
-	"devDependencies": {
-		"@babel/preset-react": "^7.14.5",
-		"@snowpack/plugin-babel": "^2.1.7",
-		"@snowpack/plugin-dotenv": "^2.1.0",
-		"@snowpack/plugin-react-refresh": "^2.5.0",
-		"@testing-library/jest-dom": "5.11.5",
-		"@testing-library/react": "11.1.1",
-		"snowpack": "^3.8.6"
-	}
+  "scripts": {
+    "start": "snowpack dev"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "cross-fetch": "^3.1.4",
+    "graphql": "^15.6.1",
+    "react": "^18.0.0-alpha-64931821a-20210808",
+    "react-dom": "^18.0.0-alpha-64931821a-20210808"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "@snowpack/plugin-babel": "^2.1.7",
+    "@snowpack/plugin-dotenv": "^2.1.0",
+    "@snowpack/plugin-react-refresh": "^2.5.0",
+    "@testing-library/jest-dom": "5.11.5",
+    "@testing-library/react": "11.1.1",
+    "snowpack": "^3.8.6"
+  }
 }
