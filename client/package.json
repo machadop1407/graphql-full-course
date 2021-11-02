@@ -6,8 +6,8 @@
     "@apollo/client": "^3.4.16",
     "cross-fetch": "^3.1.4",
     "graphql": "^15.6.1",
-    "react": "^18.0.0-alpha-64931821a-20210808",
-    "react-dom": "^18.0.0-alpha-64931821a-20210808"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
