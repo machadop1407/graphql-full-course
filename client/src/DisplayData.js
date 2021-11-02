@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { useQuery, useLazyQuery, gql, useMutation } from "@apollo/client";
 
+const QUERY_ALL_USERS = gql`
+  query GetAllUsers {
+    users {
+      id
+      name
+      username
+    }
+  }
+`;
+
 const CREATE_USER_MUTATION = gql`
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
@@ -11,6 +21,8 @@ const CREATE_USER_MUTATION = gql`
 `;
 
 function DisplayData() {
+
+  const { data, loading, refetch } = useQuery(QUERY_ALL_USERS);
 
   // Create User States
   const [name, setName] = useState("");
@@ -45,7 +57,15 @@ function DisplayData() {
         </button>
       </div>
       
-     
+      {data &&
+        data.users.map((user) => {
+          return (
+            <div>
+              <h1>Name: {user.name}</h1>
+              <h1>Username: {user.username}</h1>
+            </div>
+          );
+        })}
     </div>
   );
 }
