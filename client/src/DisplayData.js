@@ -21,15 +21,13 @@ const CREATE_USER_MUTATION = gql`
 `;
 
 function DisplayData() {
-
   const { data, loading, refetch } = useQuery(QUERY_ALL_USERS);
 
   // Create User States
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-  
-  //BROKEN: Add the useMutation call utilizing the CREATE_USER_MUTATION mutation. For simplicity reasons, a user only needs a name and a username as variables.
 
+  //BROKEN: Add the useMutation call utilizing the CREATE_USER_MUTATION mutation. For simplicity reasons, a user only needs a name and a username as variables.
 
   return (
     <div>
@@ -48,15 +46,19 @@ function DisplayData() {
             setUsername(event.target.value);
           }}
         />
-      
-      {/* BROKEN: Add a the mutation function call inside of this onClick */}
+
+        {/* BROKEN: Add a the mutation function call inside of this onClick */}
         <button
-          onClick={}
+          onClick={() => {
+            // Add the function call
+
+            refetch();
+          }}
         >
           Create User
         </button>
       </div>
-      
+
       {data &&
         data.users.map((user) => {
           return (
