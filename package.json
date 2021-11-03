@@ -1,0 +1,8 @@
+{
+  "name": "gql-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/machadop1407/graphql-full-course.git",
+  "author": "Pedro Machado <machadop1407@gmail.com>",
+  "license": "MIT"
+}

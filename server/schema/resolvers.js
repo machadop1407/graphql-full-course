@@ -1,64 +1,18 @@
-const { UserList, MovieList } = require("../FakeData");
+const { BookList } = require("../FakeData");
 const _ = require("lodash");
 
 const resolvers = {
   Query: {
     // USER RESOLVERS
-    users: () => {
-      return UserList;
-    },
-    user: (parent, args) => {
-      const id = args.id;
-      const user = _.find(UserList, { id: Number(id) });
-      return user;
-    },
+    books: () => {
+      if (BookList) return { books: BookList };
 
-    // MOVIE RESOLVERS
-    movies: () => {
-      return MovieList;
-    },
-    movie: (parent, args) => {
-      const name = args.name;
-      const movie = _.find(MovieList, { name });
-      return movie;
+      return { message: "There was an error making the request." };
     },
   },
-  User: {
-    favoriteMovies: () => {
-      return _.filter(
-        MovieList,
-        (movie) =>
-          movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010
-      );
-    },
-  },
-
-  Mutation: {
-    createUser: (parent, args) => {
-      const user = args.input;
-      const lastId = UserList[UserList.length - 1].id;
-      user.id = lastId + 1;
-      UserList.push(user);
-      return user;
-    },
-
-    updateUsername: (parent, args) => {
-      const { id, newUsername } = args.input;
-      let userUpdated;
-      UserList.forEach((user) => {
-        if (user.id === Number(id)) {
-          user.username = newUsername;
-          userUpdated = user;
-        }
-      });
-
-      return userUpdated;
-    },
-
-    deleteUser: (parent, args) => {
-      const id = args.id;
-      _.remove(UserList, (user) => user.id === Number(id));
-      return null;
+  BooksResult: {
+    __resolveType(obj) {
+      // Add a resolver for the BooksResult type
     },
   },
 };

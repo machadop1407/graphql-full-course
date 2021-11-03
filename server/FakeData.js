@@ -1,91 +1,28 @@
-const UserList = [
+const BookList = [
   {
     id: 1,
-    name: "John",
-    username: "john",
-    age: 20,
-    nationality: "CANADA",
-    friends: [
-      {
-        id: 2,
-        name: "Pedro",
-        username: "PedroTech",
-        age: 20,
-        nationality: "BRAZIL",
-      },
-      {
-        id: 5,
-        name: "Kelly",
-        username: "kelly2019",
-        age: 5,
-        nationality: "CHILE",
-      },
-    ],
+    name: "Harry Potter and the Sorcerer Stone",
+    yearOfPublication: 1998,
+    price: 299,
   },
   {
     id: 2,
-    name: "Pedro",
-    username: "PedroTech",
-    age: 20,
-    nationality: "BRAZIL",
-  },
-  {
-    id: 3,
-    name: "Sarah",
-    username: "cameron",
-    age: 25,
-    nationality: "INDIA",
-    friends: [
-      {
-        id: 2,
-        name: "Pedro",
-        username: "PedroTech",
-        age: 20,
-        nationality: "BRAZIL",
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Rafe",
-    username: "rafe123",
-    age: 60,
-    nationality: "GERMANY",
-  },
-  {
-    id: 5,
-    name: "Kelly",
-    username: "kelly2019",
-    age: 5,
-    nationality: "CHILE",
-  },
-];
-
-const MovieList = [
-  {
-    id: 1,
-    name: "Avengers Endgame",
-    yearOfPublication: 2019,
-    isInTheaters: true,
-  },
-  {
-    id: 2,
-    name: "Interstellar",
+    name: "The Martian",
     yearOfPublication: 2007,
-    isInTheaters: true,
+    price: 200,
   },
   {
     id: 3,
-    name: "Superbad",
-    yearOfPublication: 2009,
-    isInTheaters: true,
+    name: "Lord of the Rings",
+    yearOfPublication: 1997,
+    price: 246,
   },
   {
     id: 4,
-    name: "PedroTech The Movie",
+    name: "PedroTech The Book",
     yearOfPublication: 2035,
-    isInTheaters: false,
+    price: 999,
   },
 ];
 
-module.exports = { UserList, MovieList };
+module.exports = { BookList };

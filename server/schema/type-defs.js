@@ -1,56 +1,20 @@
 const { gql } = require("apollo-server");
 
 const typeDefs = gql`
-  type User {
+  type Book {
     id: ID!
-    name: String!
-    username: String!
-    age: Int!
-    nationality: Nationality!
-    friends: [User]
-    favoriteMovies: [Movie]
-  }
-
-  type Movie {
-    id: ID!
-    name: String!
+    title: String!
     yearOfPublication: Int!
-    isInTheaters: Boolean!
+    price: Int!
   }
 
   type Query {
-    users: [User!]!
-    user(id: ID!): User!
-    movies: [Movie!]!
-    movie(name: String!): Movie!
+    books: [Book!]!
   }
 
-  input CreateUserInput {
-    name: String!
-    username: String!
-    age: Int!
-    nationality: Nationality = BRAZIL
-  }
-
-  input UpdateUsernameInput {
-    id: ID!
-    newUsername: String!
-  }
-
-  type Mutation {
-    createUser(input: CreateUserInput!): User
-    updateUsername(input: UpdateUsernameInput!): User
-    deleteUser(id: ID!): User
-  }
-
-  enum Nationality {
-    CANADA
-    BRAZIL
-    INDIA
-    GERMANY
-    CHILE
-    UKRAINE
-  }
+  # Right now the "books" field is returning a list of Books: [Book!]!
+  # You need to change that and return a Result Box called: "BooksResult"
+  # This result box should be a union of two types: BooksSuccess and BooksError.
 `;
 
 module.exports = { typeDefs };
