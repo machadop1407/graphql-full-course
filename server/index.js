@@ -1,9 +1,14 @@
-const { ApolloServer } = require("apollo-server");
-const { typeDefs } = require("./schema/type-defs");
-const { resolvers } = require("./schema/resolvers");
+// Try the following query in the browser and see if it works.
+// Play around with the fields so you can practice :)
 
-const server = new ApolloServer({ typeDefs, resolvers });
-
-server.listen().then(({ url }) => {
-  console.log(`YOUR API IS RUNNING AT: ${url} :)`);
-});
+/*
+{
+  continents {
+    code
+    name
+    countries {
+      name
+    }
+  }
+}
+*/
