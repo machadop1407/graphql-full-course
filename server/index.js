@@ -4,6 +4,6 @@ const { resolvers } = require("./schema/resolvers");
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen().then(({ url }) => {
+server.listen(1338).then(({ url }) => {
   console.log(`YOUR API IS RUNNING AT: ${url} :)`);
 });
