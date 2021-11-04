@@ -34,6 +34,7 @@ function DisplayData() {
       <div>
         <input
           type="text"
+          title="name"
           placeholder="Name..."
           onChange={(event) => {
             setName(event.target.value);
@@ -41,6 +42,7 @@ function DisplayData() {
         />
         <input
           type="text"
+          title="username"
           placeholder="Username..."
           onChange={(event) => {
             setUsername(event.target.value);
@@ -49,6 +51,7 @@ function DisplayData() {
 
         {/* BROKEN: Add a the mutation function call inside of this onClick */}
         <button
+          title="createUser"
           onClick={() => {
             // Add the function call
 

@@ -13,7 +13,7 @@ function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: `https://${window.location.hostname}:1338/graphql`,
+      uri: `${window.location.protocol}//${window.location.hostname}:1338/graphql`,
       fetch,
     }),
   });
