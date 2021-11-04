@@ -21,7 +21,7 @@ function DisplayData() {
       {data &&
         data.movies.map((movie) => {
           return (
-            <div>
+            <div className="movie">
               <h1>Movie: {movie.name}</h1>
             </div>
           );
