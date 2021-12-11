@@ -65,7 +65,7 @@ function DisplayData() {
       {data &&
         data.users.map((user) => {
           return (
-            <div>
+            <div className="user">
               <h1>Name: {user.name}</h1>
               <h1>Username: {user.username}</h1>
             </div>
